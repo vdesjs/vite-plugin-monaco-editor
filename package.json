@@ -10,6 +10,9 @@
     "test:dev": "npm run build && vite --config test/vite.config.js",
     "test:preview": "vite preview --config test/vite.config.js"
   },
+  "files": [
+    "dist"
+  ],
   "author": "china-bin",
   "license": "MIT",
   "keywords": [
