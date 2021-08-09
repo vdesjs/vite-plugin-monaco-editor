@@ -17,6 +17,9 @@
     "monaco",
     "editor"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "devDependencies": {
     "@types/node": "^16.4.13",
     "@vitejs/plugin-vue": "^1.4.0",
