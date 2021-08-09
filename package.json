@@ -1,0 +1,32 @@
+{
+  "name": "vite-plugin-monaco-editor",
+  "version": "1.0.0",
+  "description": "A vite plugin for the Monaco Editor",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test:build": "npm run build && vite build --config test/vite.config.js",
+    "test:dev": "npm run build && vite --config test/vite.config.js",
+    "test:preview": "vite preview --config test/vite.config.js"
+  },
+  "author": "china-bin",
+  "license": "MIT",
+  "keywords": [
+    "vite-plugin",
+    "monaco",
+    "editor"
+  ],
+  "devDependencies": {
+    "@types/node": "^16.4.13",
+    "@vitejs/plugin-vue": "^1.4.0",
+    "@vue/compiler-sfc": "^3.1.5",
+    "monaco-editor": "^0.26.1",
+    "typescript": "^4.3.5",
+    "vite": "^2.4.4",
+    "vue": "^3.1.5"
+  },
+  "peerDependencies": {
+    "monaco-editor": "0.25.x || 0.26.x"
+  }
+}
