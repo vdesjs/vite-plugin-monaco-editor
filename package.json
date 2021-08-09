@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-monaco-editor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A vite plugin for the Monaco Editor",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
