@@ -69,7 +69,7 @@ monaco.editor.create(document.getElementById('container'), {
 
 ## Options
 
-* `languageWorks` (`string[]`) -  include only a subset of the languageWorkers supported.
+* `languageWorkers` (`string[]`) -  include only a subset of the languageWorkers supported.
   * default value: ['editorWorkerService', 'css', 'html', 'json', 'typescript'].
   *  Assuming only use css worker(editorWorkerService is must include base worker), you can set ['editorWorkerService', 'css']
 
