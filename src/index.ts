@@ -64,12 +64,11 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
       resolvedConfig = getResolvedConfig;
     },
     configureServer(server) {
-
-     workerMiddleware(server.middlewares, resolvedConfig, options);
+      workerMiddleware(server.middlewares, resolvedConfig, options);
     },
     transformIndexHtml(html) {
       const works = options.languageWorkers.map((work) => languageWorksByLabel[work]);
-      const workerPaths = getWorkPath(works, options)
+      const workerPaths = getWorkPath(works, options);
 
       const globals = {
         MonacoEnvironment: `(function (paths) {
@@ -105,7 +104,6 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
     },
 
     writeBundle() {
-
       const works = options.languageWorkers.map((work) => languageWorksByLabel[work]);
 
       // write publicPath
@@ -113,7 +111,7 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
         resolvedConfig.root + '/' + resolvedConfig.build.outDir + '/' + options.publicPath,
         (err) => {
           if (err != null) {
-            throw err
+            throw err;
           }
         }
       );
@@ -136,7 +134,6 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
           getFilenameByEntry(work.entry);
         fs.writeFileSync(destPath, contentBuffer);
       }
-
     },
   };
 }
