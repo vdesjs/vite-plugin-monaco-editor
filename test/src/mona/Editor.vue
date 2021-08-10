@@ -3,9 +3,9 @@
 </template>
 <script>
 import { ref, onMounted } from 'vue'
-import * as monaco from 'monaco-editor';
+// import * as monaco from 'monaco-editor';
 // import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-// import {monaco} from "./customMonaco.js"
+import {monaco} from "./customMonaco.js"
 export default {
     setup() {
         const editor = ref(null)

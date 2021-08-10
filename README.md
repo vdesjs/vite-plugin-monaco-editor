@@ -26,7 +26,7 @@ export default defineConfig({
 })
 
 ```
-
+### Import all monaco functions
 * `index.js`:
 ```js
 import * as monaco from 'monaco-editor'
@@ -37,6 +37,33 @@ monaco.editor.create(document.getElementById('container'), {
   language: 'javascript'
 });
 ```
+
+
+### Import part of monaco functions
+The `import * as monaco from 'monaco-editor'` is import all features and languages of the Monaco Editor. Aussme you only need part of the features and languages:
+
+* `customMonaco.js`
+```js
+import 'monaco-editor/esm/vs/editor/editor.all.js';
+import 'monaco-editor/esm/vs/editor/standalone/browser/accessibilityHelp/accessibilityHelp.js';
+
+ import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+
+ export { monaco };
+
+```
+The Complete list of imports: [customMonaco.js](test/src/mona/customMonaco.js)
+
+* `index.js`
+```js
+import {monaco} from './customMonaco.js'
+monaco.editor.create(document.getElementById('container'), {
+  value: 'console.log("Hello, world")',
+  language: 'javascript'
+});
+```
+
+
 
 ## Options
 
