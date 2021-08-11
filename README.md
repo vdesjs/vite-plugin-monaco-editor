@@ -6,7 +6,7 @@ A plugin to simplify loading the [Monaco Editor](https://github.com/Microsoft/mo
 * It use esbuild to bundle worker in the `node_moudles/.monaco` directory, via the `server.middlewares` proxy http server for the bundle worker. 
 
 ## Installing
-```sh
+```js
 // make sure you have it installed monaco-editor.
 
 yarn add vite-plugin-monaco-editor -D
@@ -16,7 +16,7 @@ npm install --save-dev vite-plugin-monaco-editor
 ```
 ## Using
 * `vite.config.js`:
-```
+```js
 import { defineConfig } from "vite";
 import monacoEditorPlugin from "vite-plugin-monaco-editor"
 
