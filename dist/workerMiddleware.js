@@ -1,10 +1,29 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.workerMiddleware = exports.getWorkPath = exports.cacheDir = exports.getFilenameByEntry = void 0;
 const index_1 = require("./index");
 const lnaguageWork_1 = require("./lnaguageWork");
 const esbuild = require('esbuild');
-const fs = require("fs");
+const fs = __importStar(require("fs"));
 function getFilenameByEntry(entry) {
     entry = entry.substr(entry.lastIndexOf('/') + 1);
     return entry + '.bundle.js';
@@ -52,35 +71,3 @@ function workerMiddleware(middlewares, config, options) {
     }
 }
 exports.workerMiddleware = workerMiddleware;
-// server.middlewares.use(
-//     '/sub/editor.worker.bundle.js',
-//     function barMiddleware(req, res, next) {
-//       esbuild.buildSync({
-//         entryPoints: [
-//           'node_modules/monaco-editor/esm/vs/editor/editor.worker.js',
-//         ],
-//         bundle: true,
-//         outfile: 'node_modules/.monaco/editor.worker.bundle.js',
-//       });
-//       const content = fs
-//         .readFileSync('node_modules/.monaco/editor.worker.bundle.js')
-//         .toLocaleString();
-//       res.end(content);
-//     }
-//   );
-//   server.middlewares.use(
-//     '/sub/ts.worker.bundle.js',
-//     function barMiddleware(req, res, next) {
-//       esbuild.buildSync({
-//         entryPoints: [
-//           'node_modules/monaco-editor/esm/vs/language/typescript/ts.worker.js',
-//         ],
-//         bundle: true,
-//         outfile: 'node_modules/.monaco/ts.worker.bundle.js',
-//       });
-//       const content = fs
-//         .readFileSync('node_modules/.monaco/ts.worker.bundle.js')
-//         .toLocaleString();
-//       res.end(content);
-//     }
-//   );
