@@ -108,7 +108,8 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
 
       // write publicPath
       fs.mkdir(
-        resolvedConfig.root + '/' + resolvedConfig.build.outDir + '/' + options.publicPath,
+        path.posix.resolve(resolvedConfig.root, resolvedConfig.build.outDir, options.publicPath),
+        // resolvedConfig.root + '/' + resolvedConfig.build.outDir + '/' + options.publicPath,
         (err) => {
           if (err != null) {
             throw err;
@@ -124,14 +125,19 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
           });
         }
         const contentBuffer = fs.readFileSync(cacheDir + getFilenameByEntry(work.entry));
-        const destPath =
-          resolvedConfig.root +
-          '/' +
-          resolvedConfig.build.outDir +
-          '/' +
-          options.publicPath +
-          '/' +
-          getFilenameByEntry(work.entry);
+        const destPath = path.posix.resolve(
+          resolvedConfig.root,
+          resolvedConfig.build.outDir,
+          options.publicPath,
+          getFilenameByEntry(work.entry)
+        );
+        // resolvedConfig.root +
+        // '/' +
+        // resolvedConfig.build.outDir +
+        // '/' +
+        // options.publicPath +
+        // '/' +
+        // getFilenameByEntry(work.entry);
         fs.writeFileSync(destPath, contentBuffer);
       }
     },

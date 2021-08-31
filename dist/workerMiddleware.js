@@ -52,35 +52,3 @@ function workerMiddleware(middlewares, config, options) {
     }
 }
 exports.workerMiddleware = workerMiddleware;
-// server.middlewares.use(
-//     '/sub/editor.worker.bundle.js',
-//     function barMiddleware(req, res, next) {
-//       esbuild.buildSync({
-//         entryPoints: [
-//           'node_modules/monaco-editor/esm/vs/editor/editor.worker.js',
-//         ],
-//         bundle: true,
-//         outfile: 'node_modules/.monaco/editor.worker.bundle.js',
-//       });
-//       const content = fs
-//         .readFileSync('node_modules/.monaco/editor.worker.bundle.js')
-//         .toLocaleString();
-//       res.end(content);
-//     }
-//   );
-//   server.middlewares.use(
-//     '/sub/ts.worker.bundle.js',
-//     function barMiddleware(req, res, next) {
-//       esbuild.buildSync({
-//         entryPoints: [
-//           'node_modules/monaco-editor/esm/vs/language/typescript/ts.worker.js',
-//         ],
-//         bundle: true,
-//         outfile: 'node_modules/.monaco/ts.worker.bundle.js',
-//       });
-//       const content = fs
-//         .readFileSync('node_modules/.monaco/ts.worker.bundle.js')
-//         .toLocaleString();
-//       res.end(content);
-//     }
-//   );
