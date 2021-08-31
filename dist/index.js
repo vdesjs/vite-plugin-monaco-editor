@@ -78,7 +78,9 @@ function monacoEditorPlugin(options = {}) {
         writeBundle() {
             const works = options.languageWorkers.map((work) => lnaguageWork_1.languageWorksByLabel[work]);
             // write publicPath
-            fs.mkdir(resolvedConfig.root + '/' + resolvedConfig.build.outDir + '/' + options.publicPath, (err) => {
+            fs.mkdir(path.posix.resolve(resolvedConfig.root, resolvedConfig.build.outDir, options.publicPath), 
+            // resolvedConfig.root + '/' + resolvedConfig.build.outDir + '/' + options.publicPath,
+            (err) => {
                 if (err != null) {
                     throw err;
                 }
@@ -92,13 +94,14 @@ function monacoEditorPlugin(options = {}) {
                     });
                 }
                 const contentBuffer = fs.readFileSync(workerMiddleware_1.cacheDir + workerMiddleware_1.getFilenameByEntry(work.entry));
-                const destPath = resolvedConfig.root +
-                    '/' +
-                    resolvedConfig.build.outDir +
-                    '/' +
-                    options.publicPath +
-                    '/' +
-                    workerMiddleware_1.getFilenameByEntry(work.entry);
+                const destPath = path.posix.resolve(resolvedConfig.root, resolvedConfig.build.outDir, options.publicPath, workerMiddleware_1.getFilenameByEntry(work.entry));
+                // resolvedConfig.root +
+                // '/' +
+                // resolvedConfig.build.outDir +
+                // '/' +
+                // options.publicPath +
+                // '/' +
+                // getFilenameByEntry(work.entry);
                 fs.writeFileSync(destPath, contentBuffer);
             }
         },
