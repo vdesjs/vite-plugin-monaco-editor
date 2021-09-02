@@ -33,7 +33,7 @@ export function getWorkPath(works, options: IMonacoEditorOpts) {
     workerPaths['razor'] = workerPaths['html'];
   }
 
-  return workerPaths
+  return workerPaths;
 }
 
 export function workerMiddleware(
@@ -43,10 +43,12 @@ export function workerMiddleware(
 ): void {
   const works = options.languageWorkers.map((work) => languageWorksByLabel[work]);
   // clear cacheDir
-  fs.rmdirSync(cacheDir, { recursive: true, force: true } as fs.RmDirOptions)
+
+  if (fs.existsSync(cacheDir)) {
+    fs.rmdirSync(cacheDir, { recursive: true, force: true } as fs.RmDirOptions);
+  }
 
   for (const work of works) {
-
     middlewares.use(
       config.base + options.publicPath + '/' + getFilenameByEntry(work.entry),
       function (req, res, next) {
@@ -61,9 +63,5 @@ export function workerMiddleware(
         res.end(contentBuffer);
       }
     );
-
   }
-
-  
 }
-
