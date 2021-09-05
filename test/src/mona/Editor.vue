@@ -16,7 +16,7 @@ export default {
             console.log(editor.value)
             monaco.editor.create(editor.value, {
                 value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
-                language: 'javascript'
+                language: 'typescript'
             });
             console.log( monaco.editor)
         })
