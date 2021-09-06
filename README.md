@@ -1,4 +1,4 @@
-# Vite Plguin Monaco Editor
+# Vite Plugin Monaco Editor
 
 A plugin to simplify loading the [Monaco Editor](https://github.com/Microsoft/monaco-editor) with [vite](https://vitejs.dev/).
 
