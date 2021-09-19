@@ -64,6 +64,9 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
       resolvedConfig = getResolvedConfig;
     },
     configureServer(server) {
+      if (isCDN(publicPath)) {
+        return;
+      }
       workerMiddleware(server.middlewares, resolvedConfig, options);
     },
     transformIndexHtml(html) {
@@ -104,6 +107,10 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
     },
 
     writeBundle() {
+      if (isCDN(publicPath)) {
+        return;
+      }
+
       const works = options.languageWorkers.map((work) => languageWorksByLabel[work]);
 
       // write publicPath
@@ -142,4 +149,12 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
       }
     },
   };
+}
+
+export function isCDN(publicPath: string) {
+  if (/^((http:)|(https:)|(file:)|(\/\/))/.test(publicPath)) {
+    return true;
+  }
+
+  return false;
 }
