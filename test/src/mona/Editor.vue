@@ -1,37 +1,35 @@
 <template>
-    <div class="editor" ref="editor">ediotr</div>
+  <div class="editor" ref="container">ediotr</div>
 </template>
-<script>
-import { ref, onMounted } from 'vue'
-// import * as monaco from 'monaco-editor';
-// import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import {monaco} from "./customMonaco.js"
+<script lang="ts">
+import { ref, onMounted } from 'vue';
+import { monaco } from './customMonaco';
 export default {
-    setup() {
-        const editor = ref(null)
+  setup() {
+    const container = ref(null);
 
-        onMounted(() => {
-            
+    let editor: monaco.editor.IStandaloneCodeEditor;
 
-            console.log(editor.value)
-            monaco.editor.create(editor.value, {
-                value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
-                language: 'typescript'
-            });
-            console.log( monaco.editor)
-        })
+    onMounted(() => {
+      editor = monaco.editor.create(container.value, {
+        value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+        language: 'typescript',
+      });
 
-        return {
-            editor
-        }
-    }
-}
+      editor.onDidChangeModelContent(() => {
+        console.log(editor.getValue())
+      })
+    });
 
-
+    return {
+      container,
+    };
+  },
+};
 </script>
 <style>
 .editor {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 </style>

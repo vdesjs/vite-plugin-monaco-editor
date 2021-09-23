@@ -6,7 +6,7 @@ A plugin to simplify loading the [Monaco Editor](https://github.com/Microsoft/mo
 * It uses esbuild to bundle worker in the `node_modules/.monaco` directory, via the `server.middlewares` proxy http server for the bundle worker. 
 
 ## Installing
-```js
+```ts
 // make sure you have it installed monaco-editor.
 
 yarn add vite-plugin-monaco-editor -D
@@ -15,8 +15,8 @@ yarn add vite-plugin-monaco-editor -D
 npm install --save-dev vite-plugin-monaco-editor
 ```
 ## Using
-* `vite.config.js`:
-```js
+* `vite.config.ts`:
+```ts
 import { defineConfig } from "vite";
 import monacoEditorPlugin from "vite-plugin-monaco-editor"
 
@@ -29,8 +29,8 @@ export default defineConfig({
 
 ```
 ### Import all monaco functions
-* `index.js`:
-```js
+* `index.ts`:
+```ts
 import * as monaco from 'monaco-editor'
 
 
@@ -44,8 +44,8 @@ monaco.editor.create(document.getElementById('container'), {
 ### Import part of monaco functions
 The `import * as monaco from 'monaco-editor'` is import all features and languages of the Monaco Editor. Assume you only need part of the features and languages:
 
-* `customMonaco.js`
-```js
+* `customMonaco.ts`
+```ts
 import 'monaco-editor/esm/vs/editor/editor.all.js';
 import 'monaco-editor/esm/vs/editor/standalone/browser/accessibilityHelp/accessibilityHelp.js';
 
@@ -54,11 +54,11 @@ import 'monaco-editor/esm/vs/editor/standalone/browser/accessibilityHelp/accessi
  export { monaco };
 
 ```
-The Complete list of imports: [customMonaco.js](test/src/mona/customMonaco.js)
+The Complete list of imports: [customMonaco.ts](test/src/mona/customMonaco.ts)
 
-* `index.js`
-```js
-import {monaco} from './customMonaco.js'
+* `index.ts`
+```ts
+import {monaco} from './customMonaco.ts'
 monaco.editor.create(document.getElementById('container'), {
   value: 'console.log("Hello, world")',
   language: 'javascript'
