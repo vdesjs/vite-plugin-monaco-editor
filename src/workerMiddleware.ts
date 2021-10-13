@@ -64,6 +64,7 @@ export function workerMiddleware(
           });
         }
         const contentBuffer = fs.readFileSync(cacheDir + getFilenameByEntry(work.entry));
+        res.setHeader('Content-Type', 'text/javascript');
         res.end(contentBuffer);
       }
     );
