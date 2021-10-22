@@ -5,3 +5,4 @@ test/dist
 temp
 .DS_Store
 dist
+.cdn

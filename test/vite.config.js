@@ -11,7 +11,7 @@ export default defineConfig({
     plugins: [
         vue(),
         monacoEditorPlugin({
-            publicPath: 'https://unpkg.com/vite-plugin-monaco-editor@1.0.5/cdn'
+            
         })
     ],
     
