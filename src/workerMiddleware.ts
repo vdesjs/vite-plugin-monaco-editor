@@ -1,5 +1,5 @@
 import { Connect, ResolvedConfig } from 'vite';
-import { IMonacoEditorOpts, isCDN, resolveMonacoPath } from './index';
+import { getWorks, IMonacoEditorOpts, isCDN, resolveMonacoPath } from './index';
 import { IWorkerDefinition, languageWorksByLabel } from './lnaguageWork';
 const esbuild = require('esbuild');
 import * as fs from 'fs';
@@ -45,7 +45,7 @@ export function workerMiddleware(
   config: ResolvedConfig,
   options: IMonacoEditorOpts
 ): void {
-  const works = options.languageWorkers.map((work) => languageWorksByLabel[work]);
+  const works = getWorks(options);
   // clear cacheDir
 
   if (fs.existsSync(cacheDir)) {
@@ -53,6 +53,7 @@ export function workerMiddleware(
   }
 
   for (const work of works) {
+    console.log(config.base + options.publicPath + '/' + getFilenameByEntry(work.entry))
     middlewares.use(
       config.base + options.publicPath + '/' + getFilenameByEntry(work.entry),
       function (req, res, next) {

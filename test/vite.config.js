@@ -11,8 +11,13 @@ export default defineConfig({
     plugins: [
         vue(),
         monacoEditorPlugin({
-            
+            customWorkers: [
+                {
+                    label: "graphql",
+                    entry: "monaco-graphql/esm/graphql.worker"
+                }
+            ]
         })
     ],
-    
+
 })

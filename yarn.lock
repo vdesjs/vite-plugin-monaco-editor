@@ -260,6 +260,44 @@ graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   resolved "https://registry.nlark.com/graceful-fs/download/graceful-fs-4.2.8.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fgraceful-fs%2Fdownload%2Fgraceful-fs-4.2.8.tgz#e412b8d33f5e006593cbd3cee6df9f2cebbe802a"
   integrity sha1-5BK40z9eAGWTy9PO5t+fLOu+gCo=
 
+graphql-language-service-interface@^2.8.2:
+  version "2.8.4"
+  resolved "https://registry.nlark.com/graphql-language-service-interface/download/graphql-language-service-interface-2.8.4.tgz#3ff31754e9b295b1abc26b97d286c00835aacff0"
+  integrity sha1-P/MXVOmylbGrwmuX0obACDWqz/A=
+  dependencies:
+    graphql-language-service-parser "^1.9.0"
+    graphql-language-service-types "^1.8.0"
+    graphql-language-service-utils "^2.5.1"
+    vscode-languageserver-types "^3.15.1"
+
+graphql-language-service-parser@^1.9.0:
+  version "1.9.2"
+  resolved "https://registry.nlark.com/graphql-language-service-parser/download/graphql-language-service-parser-1.9.2.tgz#b2dc45620cb6b9bac8ac175c197c77f0ff12d679"
+  integrity sha1-stxFYgy2ubrIrBdcGXx38P8S1nk=
+  dependencies:
+    graphql-language-service-types "^1.8.0"
+
+graphql-language-service-types@^1.8.0:
+  version "1.8.2"
+  resolved "https://registry.nlark.com/graphql-language-service-types/download/graphql-language-service-types-1.8.2.tgz#50ae56f69cc24fcfc3daa129b68b0eb9421e8578"
+  integrity sha1-UK5W9pzCT8/D2qEptosOuUIehXg=
+
+graphql-language-service-utils@^2.5.1:
+  version "2.5.3"
+  resolved "https://registry.nlark.com/graphql-language-service-utils/download/graphql-language-service-utils-2.5.3.tgz#185f4f65cf8c010871eb9405452a3a0bfdf88748"
+  integrity sha1-GF9PZc+MAQhx65QFRSo6C/34h0g=
+  dependencies:
+    graphql-language-service-types "^1.8.0"
+    nullthrows "^1.0.0"
+
+graphql-language-service@^3.1.2:
+  version "3.1.4"
+  resolved "https://registry.nlark.com/graphql-language-service/download/graphql-language-service-3.1.4.tgz#ca8698f70e9923e3267e3d457228bc55a7dd75f9"
+  integrity sha1-yoaY9w6ZI+Mmfj1Fcii8Vafddfk=
+  dependencies:
+    graphql-language-service-interface "^2.8.2"
+    graphql-language-service-types "^1.8.0"
+
 has-symbols@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/has-symbols/download/has-symbols-1.0.2.tgz?cache=0&sync_timestamp=1614443557459&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhas-symbols%2Fdownload%2Fhas-symbols-1.0.2.tgz#165d3070c00309752a1236a479331e3ac56f1423"
@@ -404,6 +442,14 @@ monaco-editor@^0.29.0:
   resolved "https://registry.npmmirror.com/monaco-editor/download/monaco-editor-0.29.1.tgz#6ee93d8a5320704d48fd7058204deed72429c020"
   integrity sha1-buk9ilMgcE1I/XBYIE3u1yQpwCA=
 
+monaco-graphql@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.npmmirror.com/monaco-graphql/download/monaco-graphql-0.4.4.tgz#50bb60d6fd6086654c2a332cfb2f400f904a02f4"
+  integrity sha1-ULtg1v1ghmVMKjMs+y9AD5BKAvQ=
+  dependencies:
+    graphql-language-service "^3.1.2"
+    graphql-language-service-utils "^2.5.1"
+
 ms@^2.1.1:
   version "2.1.3"
   resolved "https://registry.nlark.com/ms/download/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
@@ -413,6 +459,11 @@ nanoid@^3.1.23:
   version "3.1.23"
   resolved "https://registry.nlark.com/nanoid/download/nanoid-3.1.23.tgz?cache=0&sync_timestamp=1620673983269&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fnanoid%2Fdownload%2Fnanoid-3.1.23.tgz#f744086ce7c2bc47ee0a8472574d5c78e4183a81"
   integrity sha1-90QIbOfCvEfuCoRyV01ceOQYOoE=
+
+nullthrows@^1.0.0:
+  version "1.1.1"
+  resolved "https://registry.npm.taobao.org/nullthrows/download/nullthrows-1.1.1.tgz#7818258843856ae971eae4208ad7d7eb19a431b1"
+  integrity sha1-eBgliEOFaulx6uQgitfX6xmkMbE=
 
 object-inspect@^1.9.0:
   version "1.11.0"
@@ -606,6 +657,11 @@ vite@^2.4.4:
     rollup "^2.38.5"
   optionalDependencies:
     fsevents "~2.3.2"
+
+vscode-languageserver-types@^3.15.1:
+  version "3.16.0"
+  resolved "https://registry.npmmirror.com/vscode-languageserver-types/download/vscode-languageserver-types-3.16.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fvscode-languageserver-types%2Fdownload%2Fvscode-languageserver-types-3.16.0.tgz#ecf393fc121ec6974b2da3efb3155644c514e247"
+  integrity sha1-7POT/BIexpdLLaPvsxVWRMUU4kc=
 
 vue@^3.1.5:
   version "3.1.5"

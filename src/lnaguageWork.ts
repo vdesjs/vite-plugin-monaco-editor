@@ -7,23 +7,23 @@ export interface IWorkerDefinition {
 export const languageWorkAttr: IWorkerDefinition[] = [
   {
     label: 'editorWorkerService',
-    entry: 'vs/editor/editor.worker',
+    entry: 'monaco-editor/esm/vs/editor/editor.worker',
   },
   {
     label: 'css',
-    entry: 'vs/language/css/css.worker',
+    entry: 'monaco-editor/esm/vs/language/css/css.worker',
   },
   {
     label: 'html',
-    entry: 'vs/language/html/html.worker',
+    entry: 'monaco-editor/esm/vs/language/html/html.worker',
   },
   {
     label: 'json',
-    entry: 'vs/language/json/json.worker',
+    entry: 'monaco-editor/esm/vs/language/json/json.worker',
   },
   {
     label: 'typescript',
-    entry: 'vs/language/typescript/ts.worker',
+    entry: 'monaco-editor/esm/vs/language/typescript/ts.worker',
   },
 ];
 
