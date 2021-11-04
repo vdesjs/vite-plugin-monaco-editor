@@ -3,9 +3,10 @@ import { getWorks, IMonacoEditorOpts, isCDN, resolveMonacoPath } from './index';
 import { IWorkerDefinition, languageWorksByLabel } from './lnaguageWork';
 const esbuild = require('esbuild');
 import * as fs from 'fs';
+import path = require('path');
 
 export function getFilenameByEntry(entry: string) {
-  entry = entry.substr(entry.lastIndexOf('/') + 1);
+  entry = path.basename(entry, "js");
   return entry + '.bundle.js';
 }
 

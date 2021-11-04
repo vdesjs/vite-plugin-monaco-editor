@@ -20,6 +20,11 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
+"@okikio/sharedworker@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npmmirror.com/@okikio/sharedworker/download/@okikio/sharedworker-1.0.3.tgz#f0580d3e75744561b60abe78f44f3455bf49ea67"
+  integrity sha1-8FgNPnV0RWG2Cr549E80Vb9J6mc=
+
 "@types/estree@^0.0.48":
   version "0.0.48"
   resolved "https://registry.nlark.com/@types/estree/download/@types/estree-0.0.48.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Festree%2Fdownload%2F%40types%2Festree-0.0.48.tgz#18dc8091b285df90db2f25aa7d906cfc394b7f74"
