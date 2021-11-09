@@ -127,14 +127,9 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
       const works = getWorks(options);
 
       // write publicPath
-      fs.mkdir(
+      fs.mkdirSync(
         path.resolve(resolvedConfig.root, resolvedConfig.build.outDir, options.publicPath),
         // resolvedConfig.root + '/' + resolvedConfig.build.outDir + '/' + options.publicPath,
-        (err) => {
-          if (err != null) {
-            throw err;
-          }
-        }
       );
       for (const work of works) {
         if (!fs.existsSync(cacheDir + getFilenameByEntry(work.entry))) {
