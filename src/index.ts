@@ -132,11 +132,8 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
       if (!fs.existsSync(distPath)) {
         fs.mkdirSync(
           path.resolve(resolvedConfig.root, resolvedConfig.build.outDir, options.publicPath),
-          // resolvedConfig.root + '/' + resolvedConfig.build.outDir + '/' + options.publicPath,
-          (err) => {
-            if (err != null) {
-              throw err;
-            }
+          {
+            recursive: true
           }
         );
       }
@@ -156,13 +153,6 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
           options.publicPath,
           getFilenameByEntry(work.entry)
         );
-        // resolvedConfig.root +
-        // '/' +
-        // resolvedConfig.build.outDir +
-        // '/' +
-        // options.publicPath +
-        // '/' +
-        // getFilenameByEntry(work.entry);
         fs.writeFileSync(destPath, contentBuffer);
       }
     },
