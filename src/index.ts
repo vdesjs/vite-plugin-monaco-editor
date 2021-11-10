@@ -130,7 +130,7 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
 
       // write publicPath
       if (!fs.existsSync(distPath)) {
-        fs.mkdir(
+        fs.mkdirSync(
           path.resolve(resolvedConfig.root, resolvedConfig.build.outDir, options.publicPath),
           // resolvedConfig.root + '/' + resolvedConfig.build.outDir + '/' + options.publicPath,
           (err) => {
@@ -140,6 +140,7 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
           }
         );
       }
+
       for (const work of works) {
         if (!fs.existsSync(cacheDir + getFilenameByEntry(work.entry))) {
           esbuild.buildSync({
