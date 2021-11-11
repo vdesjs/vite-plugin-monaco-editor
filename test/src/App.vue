@@ -1,7 +1,5 @@
 <template>
-    <Editor ></Editor>
+  <router-view></router-view>
 </template>
 
-<script setup>
-import Editor from "./mona/Editor.vue"
-</script>
+<script setup></script>

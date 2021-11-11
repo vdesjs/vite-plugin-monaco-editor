@@ -19,7 +19,7 @@ export function getWorkPath(works: IWorkerDefinition[], options: IMonacoEditorOp
     if (isCDN(options.publicPath)) {
       workerPaths[work.label] = options.publicPath + '/' + getFilenameByEntry(work.entry);
     } else {
-      workerPaths[work.label] = './' + options.publicPath + '/' + getFilenameByEntry(work.entry);
+      workerPaths[work.label] = '/' + options.publicPath + '/' + getFilenameByEntry(work.entry);
     }
   }
 
