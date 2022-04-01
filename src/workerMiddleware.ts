@@ -12,14 +12,14 @@ export function getFilenameByEntry(entry: string) {
 
 export const cacheDir = 'node_modules/.monaco/';
 
-export function getWorkPath(works: IWorkerDefinition[], options: IMonacoEditorOpts) {
+export function getWorkPath(works: IWorkerDefinition[], options: IMonacoEditorOpts, config: ResolvedConfig) {
   const workerPaths = {};
 
   for (const work of works) {
     if (isCDN(options.publicPath)) {
       workerPaths[work.label] = options.publicPath + '/' + getFilenameByEntry(work.entry);
     } else {
-      workerPaths[work.label] = '/' + options.publicPath + '/' + getFilenameByEntry(work.entry);
+      workerPaths[work.label] = config.base + options.publicPath + '/' + getFilenameByEntry(work.entry);
     }
   }
 

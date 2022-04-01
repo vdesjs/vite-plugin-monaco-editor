@@ -84,7 +84,7 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
     },
     transformIndexHtml(html) {
       const works = getWorks(options);
-      const workerPaths = getWorkPath(works, options);
+      const workerPaths = getWorkPath(works, options, resolvedConfig);
 
       const globals = {
         MonacoEnvironment: `(function (paths) {
