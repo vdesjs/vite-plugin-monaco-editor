@@ -47,6 +47,6 @@
     "vue-router": "^4.0.12"
   },
   "peerDependencies": {
-    "monaco-editor": "0.29.x"
+    "monaco-editor": "^0.29.0"
   }
 }
