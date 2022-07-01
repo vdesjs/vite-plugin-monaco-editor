@@ -39,7 +39,7 @@
     "@vue/compiler-sfc": "^3.1.5",
     "fs-extra": "^10.0.0",
     "http-server": "^13.0.2",
-    "monaco-editor": "^0.29.0",
+    "monaco-editor": "^0.33.0",
     "monaco-graphql": "^0.4.4",
     "typescript": "^4.3.5",
     "vite": "^2.4.4",
@@ -47,6 +47,6 @@
     "vue-router": "^4.0.12"
   },
   "peerDependencies": {
-    "monaco-editor": "0.29.x"
+    "monaco-editor": ">=0.33.0"
   }
 }
