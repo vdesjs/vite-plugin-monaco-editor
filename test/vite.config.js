@@ -14,6 +14,7 @@ export default defineConfig({
         vue(),
         monacoEditorPlugin({
             publicPath: 'a/monacoeditorwork',
+            // publicPath: 'https://unpkg.com/vite-plugin-monaco-editor@1.0.5/cdn',
             customWorkers: [
                 {
                     label: "graphql",

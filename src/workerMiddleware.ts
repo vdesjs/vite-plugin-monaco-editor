@@ -6,20 +6,25 @@ import * as fs from 'fs';
 import path = require('path');
 
 export function getFilenameByEntry(entry: string) {
-  entry = path.basename(entry, "js");
+  entry = path.basename(entry, 'js');
   return entry + '.bundle.js';
 }
 
 export const cacheDir = 'node_modules/.monaco/';
 
-export function getWorkPath(works: IWorkerDefinition[], options: IMonacoEditorOpts, config: ResolvedConfig) {
+export function getWorkPath(
+  works: IWorkerDefinition[],
+  options: IMonacoEditorOpts,
+  config: ResolvedConfig
+) {
   const workerPaths = {};
 
   for (const work of works) {
     if (isCDN(options.publicPath)) {
       workerPaths[work.label] = options.publicPath + '/' + getFilenameByEntry(work.entry);
     } else {
-      workerPaths[work.label] = config.base + options.publicPath + '/' + getFilenameByEntry(work.entry);
+      workerPaths[work.label] =
+        config.base + options.publicPath + '/' + getFilenameByEntry(work.entry);
     }
   }
 
@@ -54,7 +59,6 @@ export function workerMiddleware(
   }
 
   for (const work of works) {
-    console.log(config.base + options.publicPath + '/' + getFilenameByEntry(work.entry))
     middlewares.use(
       config.base + options.publicPath + '/' + getFilenameByEntry(work.entry),
       function (req, res, next) {

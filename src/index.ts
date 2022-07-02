@@ -18,12 +18,13 @@ export function resolveMonacoPath(filePath: string): string {
 }
 
 export function getWorks(options: IMonacoEditorOpts) {
-  let works: IWorkerDefinition[] = options.languageWorkers.map((work) => languageWorksByLabel[work]);
+  let works: IWorkerDefinition[] = options.languageWorkers.map(
+    (work) => languageWorksByLabel[work]
+  );
 
   works.push(...options.customWorkers);
 
   return works;
-
 }
 
 export interface IMonacoEditorOpts {
@@ -59,12 +60,11 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
   const globalAPI = options.globalAPI || false;
   const customWorkers = options.customWorkers || [];
 
-
   options = {
     languageWorkers,
     publicPath,
     globalAPI,
-    customWorkers
+    customWorkers,
   };
 
   let resolvedConfig: ResolvedConfig;
@@ -78,7 +78,6 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
       if (isCDN(publicPath)) {
         return;
       }
-
 
       workerMiddleware(server.middlewares, resolvedConfig, options);
     },
@@ -126,16 +125,18 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
 
       const works = getWorks(options);
 
-      const distPath = path.resolve(resolvedConfig.root, resolvedConfig.build.outDir, options.publicPath);
+      const distPath = path.join(
+        resolvedConfig.root,
+        resolvedConfig.build.outDir,
+        resolvedConfig.base,
+        options.publicPath
+      );
 
       // write publicPath
       if (!fs.existsSync(distPath)) {
-        fs.mkdirSync(
-          path.resolve(resolvedConfig.root, resolvedConfig.build.outDir, options.publicPath),
-          {
-            recursive: true
-          }
-        );
+        fs.mkdirSync(distPath, {
+          recursive: true,
+        });
       }
 
       for (const work of works) {
@@ -147,13 +148,8 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
           });
         }
         const contentBuffer = fs.readFileSync(cacheDir + getFilenameByEntry(work.entry));
-        const destPath = path.resolve(
-          resolvedConfig.root,
-          resolvedConfig.build.outDir,
-          options.publicPath,
-          getFilenameByEntry(work.entry)
-        );
-        fs.writeFileSync(destPath, contentBuffer);
+        const workDistPath = path.resolve(distPath, getFilenameByEntry(work.entry));
+        fs.writeFileSync(workDistPath, contentBuffer);
       }
     },
   };
