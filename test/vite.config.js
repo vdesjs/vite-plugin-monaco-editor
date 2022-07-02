@@ -13,12 +13,12 @@ export default defineConfig({
   plugins: [
     vue(),
     monacoEditorPlugin({
-    //   publicPath: '..',
-      customDistPath: (root, buildOutDir, base) => {
-        return path.join(root, buildOutDir);
-      },
-      publicPath: 'https://unpkg.com/vite-plugin-monaco-editor@1.0.5/cdn',
-      forceBuildCDN: true,
+      publicPath: 'a/monacoeditorwork',
+      // customDistPath: (root, buildOutDir, base) => {
+      //   return path.join(root, buildOutDir);
+      // },
+      // publicPath: 'https://unpkg.com/vite-plugin-monaco-editor@1.0.5/cdn',
+      // forceBuildCDN: true,
       customWorkers: [
         {
           label: 'graphql',
