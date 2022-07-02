@@ -6,7 +6,7 @@ import path from 'path';
 console.log(path.resolve(__dirname, 'src/worker/share.worker'));
 export default defineConfig({
   root: 'test',
-  base: 'sub',
+  // base: 'sub',
   build: {
     minify: false,
   },
