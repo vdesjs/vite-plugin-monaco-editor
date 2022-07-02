@@ -1,31 +1,34 @@
-import { defineConfig } from "vite";
-import monacoEditorPlugin from "../dist/index"
-import vue from '@vitejs/plugin-vue'
-import path from "path";
+import { defineConfig } from 'vite';
+import monacoEditorPlugin from '../dist/index';
+import vue from '@vitejs/plugin-vue';
+import path from 'path';
 
-console.log(path.resolve(__dirname, "src/worker/share.worker"))
+console.log(path.resolve(__dirname, 'src/worker/share.worker'));
 export default defineConfig({
-    root: 'test',
-    // base: 'sub',
-    build: {
-        minify: false,
-    },
-    plugins: [
-        vue(),
-        monacoEditorPlugin({
-            publicPath: 'a/monacoeditorwork',
-            // publicPath: 'https://unpkg.com/vite-plugin-monaco-editor@1.0.5/cdn',
-            customWorkers: [
-                {
-                    label: "graphql",
-                    entry: "monaco-graphql/esm/graphql.worker"
-                },
-                {
-                    label: "share",
-                    entry: path.resolve(__dirname, "src/worker/share.worker")
-                }
-            ]
-        })
-    ],
-
-})
+  root: 'test',
+  base: 'sub',
+  build: {
+    minify: false,
+  },
+  plugins: [
+    vue(),
+    monacoEditorPlugin({
+    //   publicPath: '..',
+      customDistPath: (root, buildOutDir, base) => {
+        return path.join(root, buildOutDir);
+      },
+      publicPath: 'https://unpkg.com/vite-plugin-monaco-editor@1.0.5/cdn',
+      forceBuildCDN: true,
+      customWorkers: [
+        {
+          label: 'graphql',
+          entry: 'monaco-graphql/esm/graphql.worker',
+        },
+        {
+          label: 'share',
+          entry: path.resolve(__dirname, 'src/worker/share.worker'),
+        },
+      ],
+    }),
+  ],
+});

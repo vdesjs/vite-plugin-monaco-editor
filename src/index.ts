@@ -43,6 +43,10 @@ export interface IMonacoEditorOpts {
    */
   publicPath?: string;
 
+  customDistPath?: (root: string, buildOutDir: string, base: string) => string;
+
+  forceBuildCDN?: boolean;
+
   /**
    * Specify whether the editor API should be exposed through a global `monaco` object or not. This
    * option is applicable to `0.22.0` and newer version of `monaco-editor`. Since `0.22.0`, the ESM
@@ -53,18 +57,21 @@ export interface IMonacoEditorOpts {
   globalAPI?: boolean;
 }
 
-export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plugin {
+export default function monacoEditorPlugin(options: IMonacoEditorOpts): Plugin {
   const languageWorkers =
     options.languageWorkers || (Object.keys(languageWorksByLabel) as EditorLanguageWorks[]);
   const publicPath = options.publicPath || 'monacoeditorwork';
   const globalAPI = options.globalAPI || false;
   const customWorkers = options.customWorkers || [];
+  const forceBuildCDN = options.forceBuildCDN || false;
 
   options = {
+    ...options,
     languageWorkers,
     publicPath,
     globalAPI,
     customWorkers,
+    forceBuildCDN,
   };
 
   let resolvedConfig: ResolvedConfig;
@@ -119,18 +126,27 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plu
     },
 
     writeBundle() {
-      if (isCDN(publicPath)) {
+      // 是cdn地址并且没有强制构建worker cdn则返回
+      if (isCDN(publicPath) && !forceBuildCDN) {
         return;
       }
 
       const works = getWorks(options);
 
-      const distPath = path.join(
-        resolvedConfig.root,
-        resolvedConfig.build.outDir,
-        resolvedConfig.base,
-        options.publicPath
-      );
+      const distPath = options.customDistPath
+        ? options.customDistPath(
+            resolvedConfig.root,
+            resolvedConfig.build.outDir,
+            resolvedConfig.base
+          )
+        : path.join(
+            resolvedConfig.root,
+            resolvedConfig.build.outDir,
+            resolvedConfig.base,
+            options.publicPath
+          );
+
+      //  console.log("distPath", distPath)
 
       // write publicPath
       if (!fs.existsSync(distPath)) {
