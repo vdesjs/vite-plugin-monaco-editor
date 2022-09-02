@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && esno script/postbuild.ts",
     "prepublish": "npm run copy:cdn",
     "test:build": "npm run build && vite build --config test/vite.config.js",
     "test:dev": "npm run build && vite --config test/vite.config.js",
@@ -37,6 +37,7 @@
     "@types/node": "^16.4.13",
     "@vitejs/plugin-vue": "^1.4.0",
     "@vue/compiler-sfc": "^3.1.5",
+    "esno": "^0.16.3",
     "fs-extra": "^10.0.0",
     "http-server": "^13.0.2",
     "monaco-editor": "^0.33.0",
