@@ -1,5 +1,5 @@
 <template>
-  <div class="editor" ref="container">ediotr</div>
+  <div class="editor" ref="container">editor</div>
 </template>
 <script lang="ts">
 import { ref, onMounted } from 'vue';
