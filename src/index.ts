@@ -61,7 +61,7 @@ export interface IMonacoEditorOpts {
   globalAPI?: boolean;
 }
 
-export default function monacoEditorPlugin(options: IMonacoEditorOpts): Plugin {
+export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plugin {
   const languageWorkers =
     options.languageWorkers || (Object.keys(languageWorksByLabel) as EditorLanguageWorks[]);
   const publicPath = options.publicPath || 'monacoeditorwork';
