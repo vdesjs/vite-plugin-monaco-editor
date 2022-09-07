@@ -2,7 +2,7 @@ import { HtmlTagDescriptor, Plugin, ResolvedConfig } from 'vite';
 import * as path from 'path';
 import * as fs from 'fs';
 
-import { EditorLanguageWorks, IWorkerDefinition, languageWorksByLabel } from './lnaguageWork';
+import { EditorLanguageWorks, editorWorkerService, IWorkerDefinition, languageWorksByLabel } from './lnaguageWork';
 import { workerMiddleware, cacheDir, getFilenameByEntry, getWorkPath } from './workerMiddleware';
 const esbuild = require('esbuild');
 
@@ -23,6 +23,10 @@ export function getWorks(options: IMonacoEditorOpts) {
   );
 
   works.push(...options.customWorkers);
+  
+  if (!works.find((worker) => worker.label === 'editorWorkerService')) {
+    works.push(editorWorkerService);
+  }
 
   return works;
 }

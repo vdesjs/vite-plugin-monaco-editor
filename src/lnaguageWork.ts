@@ -3,12 +3,13 @@ export interface IWorkerDefinition {
   entry: string;
 }
 
+export const editorWorkerService: IWorkerDefinition = {
+  label: 'editorWorkerService',
+  entry: 'monaco-editor/esm/vs/editor/editor.worker',
+};
 
 export const languageWorkAttr: IWorkerDefinition[] = [
-  {
-    label: 'editorWorkerService',
-    entry: 'monaco-editor/esm/vs/editor/editor.worker',
-  },
+  editorWorkerService,
   {
     label: 'css',
     entry: 'monaco-editor/esm/vs/language/css/css.worker',
