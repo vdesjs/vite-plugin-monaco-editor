@@ -3,6 +3,7 @@
   "version": "1.1.0",
   "description": "A vite plugin for the Monaco Editor",
   "main": "dist/index.js",
+  "type": "module",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
@@ -48,5 +49,11 @@
   },
   "peerDependencies": {
     "monaco-editor": ">=0.33.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   }
 }

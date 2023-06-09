@@ -1,9 +1,9 @@
 import { Connect, ResolvedConfig } from 'vite';
 import { getWorks, IMonacoEditorOpts, isCDN, resolveMonacoPath } from './index';
 import { IWorkerDefinition, languageWorksByLabel } from './lnaguageWork';
-const esbuild = require('esbuild');
+import * as esbuild from 'esbuild'
 import * as fs from 'fs';
-import path = require('path');
+import * as path from 'path'
 
 export function getFilenameByEntry(entry: string) {
   entry = path.basename(entry, 'js');

@@ -3,7 +3,7 @@
     "compilerOptions": {
       "outDir": "dist",
       "target": "ES6",
-      "module": "commonjs",
+      "module": "ES6",
       "moduleResolution": "node",
       "declaration": true,
     }
