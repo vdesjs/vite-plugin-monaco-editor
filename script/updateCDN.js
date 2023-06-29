@@ -1,5 +1,5 @@
-const fse = require("fs-extra")
+import { copySync } from "fs-extra"
 
-fse.copySync("test/dist/a/monacoeditorwork", "cdn", {
+copySync("test/dist/a/monacoeditorwork", "cdn", {
     
 })
