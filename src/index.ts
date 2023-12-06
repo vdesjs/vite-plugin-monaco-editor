@@ -57,7 +57,7 @@ export interface IMonacoEditorOpts {
   globalAPI?: boolean;
 }
 
-export default function monacoEditorPlugin(options: IMonacoEditorOpts): Plugin {
+export default function monacoEditorPlugin(options: IMonacoEditorOpts = {}): Plugin {
   const languageWorkers =
     options.languageWorkers || (Object.keys(languageWorksByLabel) as EditorLanguageWorks[]);
   const publicPath = options.publicPath || 'monacoeditorwork';
@@ -98,7 +98,7 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts): Plugin {
             globalAPI: ${globalAPI},
             getWorkerUrl : function (moduleId, label) {
               var result =  paths[label];
-              if (/^((http:)|(https:)|(file:)|(\\/\\/))/.test(result)) {
+              if (/^((http:)|(https:)|(file:)|(\\\\/\\\\/))/.test(result)) {
                 var currentUrl = String(window.location);
                 var currentOrigin = currentUrl.substr(0, currentUrl.length - window.location.hash.length - window.location.search.length - window.location.pathname.length);
                 if (result.substring(0, currentOrigin.length) !== currentOrigin) {
