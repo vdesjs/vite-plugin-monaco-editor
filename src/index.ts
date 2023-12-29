@@ -1,19 +1,19 @@
 import { HtmlTagDescriptor, Plugin, ResolvedConfig } from 'vite';
-import * as path from 'path';
-import * as fs from 'fs';
+import { resolve, join } from 'node:path';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { buildSync } from 'esbuild'
 
-import { EditorLanguageWorks, IWorkerDefinition, languageWorksByLabel } from './lnaguageWork';
-import { workerMiddleware, cacheDir, getFilenameByEntry, getWorkPath } from './workerMiddleware';
-const esbuild = require('esbuild');
+import { EditorLanguageWorks, IWorkerDefinition, languageWorksByLabel } from './lnaguageWork.js';
+import { workerMiddleware, cacheDir, getFilenameByEntry, getWorkPath } from './workerMiddleware.js';
 
 /**
  * Return a resolved path for a given Monaco file.
  */
 export function resolveMonacoPath(filePath: string): string {
   try {
-    return require.resolve(path.join(process.cwd(), 'node_modules', filePath));
+    return resolve(join(process.cwd(), 'node_modules', filePath));
   } catch (err) {
-    return require.resolve(filePath);
+    return resolve(filePath);
   }
 }
 
@@ -77,7 +77,7 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts): Plugin {
   let resolvedConfig: ResolvedConfig;
 
   return {
-    name: 'vite-plugin-moncao-editor',
+    name: 'vite-plugin-monaco-editor',
     configResolved(getResolvedConfig) {
       resolvedConfig = getResolvedConfig;
     },
@@ -139,7 +139,7 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts): Plugin {
             resolvedConfig.build.outDir,
             resolvedConfig.base
           )
-        : path.join(
+        : join(
             resolvedConfig.root,
             resolvedConfig.build.outDir,
             resolvedConfig.base,
@@ -149,23 +149,23 @@ export default function monacoEditorPlugin(options: IMonacoEditorOpts): Plugin {
       //  console.log("distPath", distPath)
 
       // write publicPath
-      if (!fs.existsSync(distPath)) {
-        fs.mkdirSync(distPath, {
+      if (!existsSync(distPath)) {
+        mkdirSync(distPath, {
           recursive: true,
         });
       }
 
       for (const work of works) {
-        if (!fs.existsSync(cacheDir + getFilenameByEntry(work.entry))) {
-          esbuild.buildSync({
+        if (!existsSync(cacheDir + getFilenameByEntry(work.entry))) {
+          buildSync({
             entryPoints: [resolveMonacoPath(work.entry)],
             bundle: true,
             outfile: cacheDir + getFilenameByEntry(work.entry),
           });
         }
-        const contentBuffer = fs.readFileSync(cacheDir + getFilenameByEntry(work.entry));
-        const workDistPath = path.resolve(distPath, getFilenameByEntry(work.entry));
-        fs.writeFileSync(workDistPath, contentBuffer);
+        const contentBuffer = readFileSync(cacheDir + getFilenameByEntry(work.entry));
+        const workDistPath = resolve(distPath, getFilenameByEntry(work.entry));
+        writeFileSync(workDistPath, contentBuffer);
       }
     },
   };

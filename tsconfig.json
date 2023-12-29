@@ -3,10 +3,9 @@
     "compilerOptions": {
       "outDir": "dist",
       "target": "ES6",
-      "module": "commonjs",
-      "moduleResolution": "node",
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
       "declaration": true,
     }
-    
   }
   
