@@ -6,7 +6,6 @@
       "module": "commonjs",
       "moduleResolution": "node",
       "declaration": true,
-    }
-    
+    }    
   }
   

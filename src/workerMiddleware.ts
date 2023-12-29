@@ -1,9 +1,9 @@
 import { Connect, ResolvedConfig } from 'vite';
-import { getWorks, IMonacoEditorOpts, isCDN, resolveMonacoPath } from './index';
-import { IWorkerDefinition, languageWorksByLabel } from './lnaguageWork';
-const esbuild = require('esbuild');
-import * as fs from 'fs';
-import path = require('path');
+import { getWorks, IMonacoEditorOpts, isCDN, resolveMonacoPath } from './index.js';
+import { IWorkerDefinition } from './lnaguageWork.js';
+import { buildSync } from 'esbuild'
+import { type RmDirOptions, existsSync, readFileSync, rmSync } from 'node:fs';
+import path = require('node:path');
 
 export function getFilenameByEntry(entry: string) {
   entry = path.basename(entry, 'js');
@@ -54,22 +54,22 @@ export function workerMiddleware(
   const works = getWorks(options);
   // clear cacheDir
 
-  if (fs.existsSync(cacheDir)) {
-    fs.rmdirSync(cacheDir, { recursive: true, force: true } as fs.RmDirOptions);
+  if (existsSync(cacheDir)) {
+    rmSync(cacheDir, { recursive: true, force: true } as RmDirOptions);
   }
 
   for (const work of works) {
     middlewares.use(
       config.base + options.publicPath + '/' + getFilenameByEntry(work.entry),
       function (req, res, next) {
-        if (!fs.existsSync(cacheDir + getFilenameByEntry(work.entry))) {
-          esbuild.buildSync({
+        if (!existsSync(cacheDir + getFilenameByEntry(work.entry))) {
+          buildSync({
             entryPoints: [resolveMonacoPath(work.entry)],
             bundle: true,
             outfile: cacheDir + getFilenameByEntry(work.entry),
           });
         }
-        const contentBuffer = fs.readFileSync(cacheDir + getFilenameByEntry(work.entry));
+        const contentBuffer = readFileSync(cacheDir + getFilenameByEntry(work.entry));
         res.setHeader('Content-Type', 'text/javascript');
         res.end(contentBuffer);
       }

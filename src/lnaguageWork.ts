@@ -28,12 +28,9 @@ export const languageWorkAttr: IWorkerDefinition[] = [
 ];
 
 
-const languageWorksByLabel: { [language: string]: IWorkerDefinition } = {};
+export const languageWorksByLabel: { [language: string]: IWorkerDefinition } = {};
 languageWorkAttr.forEach(
   (languageWork) => (languageWorksByLabel[languageWork.label] = languageWork)
 );
-
-export {languageWorksByLabel}
-
 
 export type EditorLanguageWorks = 'css' | 'html' | 'json' | 'typescript' | 'editorWorkerService'

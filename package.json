@@ -4,14 +4,15 @@
   "description": "A vite plugin for the Monaco Editor",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "build": "tsc",
-    "prepublish": "npm run copy:cdn",
+    "prepublish": "npm run build && npm run copy:cdn",
     "test:build": "npm run build && vite build --config test/vite.config.js",
     "test:dev": "npm run build && vite --config test/vite.config.js",
     "test:preview": "vite preview --config test/vite.config.js",
     "simulator:cdn": "http-server cdn/ --port 8888",
-    "copy:cdn": "node script/updateCDN.js"
+    "copy:cdn": "node script/updateCDN.mjs"
   },
   "files": [
     "dist",
@@ -32,21 +33,19 @@
     "registry": "https://registry.npmjs.org"
   },
   "devDependencies": {
-    "@okikio/sharedworker": "^1.0.3",
-    "@types/fs-extra": "^9.0.13",
-    "@types/node": "^16.4.13",
-    "@vitejs/plugin-vue": "^1.4.0",
-    "@vue/compiler-sfc": "^3.1.5",
-    "fs-extra": "^10.0.0",
-    "http-server": "^13.0.2",
-    "monaco-editor": "^0.33.0",
-    "monaco-graphql": "^0.4.4",
-    "typescript": "^4.3.5",
-    "vite": "^2.4.4",
-    "vue": "^3.1.5",
-    "vue-router": "^4.0.12"
+    "@okikio/sharedworker": "^1.0.6",
+    "@types/node": "^20.10.5",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "monaco-graphql": "^1.4.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vue": "^3.3.13",
+    "vue-router": "^4.2.5"
   },
   "peerDependencies": {
-    "monaco-editor": ">=0.33.0"
+    "monaco-editor": ">=0.45.0"
+  },
+  "dependencies": {
+    "esbuild": "^0.19.10"
   }
 }

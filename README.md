@@ -10,10 +10,13 @@ A plugin to simplify loading the [Monaco Editor](https://github.com/Microsoft/mo
 ```ts
 // make sure you have it installed monaco-editor.
 
-yarn add vite-plugin-monaco-editor -D
+yarn add -D vite-plugin-monaco-editor monaco-editor
 
 // or
-npm install --save-dev vite-plugin-monaco-editor
+npm install -D vite-plugin-monaco-editor monaco-editor
+
+// or
+pnpm install -D vite-plugin-monaco-editor monaco-editor
 ```
 
 ## Using
