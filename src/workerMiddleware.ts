@@ -2,7 +2,7 @@ import { Connect, ResolvedConfig } from 'vite';
 import { getWorks, IMonacoEditorOpts, isCDN, resolveMonacoPath } from './index.js';
 import { IWorkerDefinition } from './lnaguageWork.js';
 import { buildSync } from 'esbuild'
-import { type RmDirOptions, existsSync, readFileSync, rmdirSync } from 'node:fs';
+import { type RmDirOptions, existsSync, readFileSync, rmSync } from 'node:fs';
 import path = require('node:path');
 
 export function getFilenameByEntry(entry: string) {
@@ -55,7 +55,7 @@ export function workerMiddleware(
   // clear cacheDir
 
   if (existsSync(cacheDir)) {
-    rmdirSync(cacheDir, { recursive: true, force: true } as RmDirOptions);
+    rmSync(cacheDir, { recursive: true, force: true } as RmDirOptions);
   }
 
   for (const work of works) {
